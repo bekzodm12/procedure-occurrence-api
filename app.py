@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def index():
     return """
-    <p>Welcome to the BigQuery App</p>
+    <p>Welcome to the Procedure Occurrence API!</p>
 
     <p>The following endpoints are available:</p>
 
