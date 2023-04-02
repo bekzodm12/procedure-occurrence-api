@@ -12,14 +12,14 @@ def index():
     <p>The following endpoints are available:</p>
 
     <p>/countrows</p>
-    <p>/countpersons/n <i>(here n is an integer)</i></p>
+    <p>/countpersons/{n}</p>
     """
 
-@app.route('/countrows')
+@app.route('/countrows', methods=['GET'])
 def procedure_query_count_rows():
     return procedure_count_rows()
 
-@app.route('/countpersons/<int:n>')
+@app.route('/countpersons/<int:n>', methods=['GET'])
 def procedure_query_count_persons(n):
     return procedure_count_persons_for_n_last_date(n)
 
