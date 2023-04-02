@@ -6,21 +6,27 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET'])
 def index():
+    """
+    Index endpoint which is called upon lauch of development server
+    """
     return """
     <p>Welcome to the Procedure Occurrence API!</p>
 
-    <p>The following endpoints are available:</p>
-
-    <p>/countrows</p>
-    <p>/countpersons/{n}</p>
+    <p>Endpoints despcription is available <a href="https://app.swaggerhub.com/apis/MAKHMUDOVB/ProcedureOccurrenceAPI/1.0.0" target="_blank">here</a>.</p>
     """
 
 @app.route('/countrows', methods=['GET'])
 def procedure_query_count_rows():
+    """
+    This endpoint returns the total count of rows in table procedure_occurrence
+    """
     return procedure_count_rows()
 
 @app.route('/countpersons/<int:n>', methods=['GET'])
 def procedure_query_count_persons(n):
+    """
+    This endpoint returns the total count of distinct persons in the last N procedure_date from procedure_occurrence table
+    """
     return procedure_count_persons_for_n_last_date(n)
 
 
