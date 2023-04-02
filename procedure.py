@@ -1,8 +1,11 @@
 import os
 from google.cloud import bigquery
 from flask import jsonify
+from dotenv import load_dotenv
 
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'website-281615-d7069b7166e0.json'
+load_dotenv()
+
+os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
 client = bigquery.Client()
 
