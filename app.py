@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from procedure import procedure_count_rows, procedure_count_persons_for_n_last_date
 
 
@@ -24,10 +24,24 @@ def procedure_query_count_persons(n):
     return procedure_count_persons_for_n_last_date(n)
 
 
+
 # Error handler for 404 ("Not found")
 @app.errorhandler(404)
 def not_found(error):
-    return 'Please check your endpoind and try again', 404
+    return jsonify({
+    'success': False,
+    'error': 404,
+    'message': 'Page Not found'
+    }), 404
+
+# Error handler for 500 ("Internal server error")
+@app.errorhandler(500)
+def server_error(error):
+    return jsonify({
+        'success': False,
+        'error': 500,
+        'message': 'Internal server error'
+    }), 500
 
 if __name__ == '__main__':
     app.run()

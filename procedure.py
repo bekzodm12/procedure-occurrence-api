@@ -7,6 +7,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = 'website-281615-d7069b7166e0.json
 client = bigquery.Client()
 
 def procedure_count_rows():
+
     sql_query = """
     SELECT count(*) total_rows FROM `bigquery-public-data.cms_synthetic_patient_data_omop.procedure_occurrence` 
     """
@@ -15,10 +16,16 @@ def procedure_count_rows():
 
     for row in results:
         #print(row.total_rows)
-        return jsonify({'data': row.total_rows})
+        return jsonify(
+            {
+                'data': row.total_rows,
+                'success': True
+            }
+        )
 
 
 def procedure_count_persons_for_n_last_date(n):
+
     sql_query = f"""
     SELECT  count(distinct person_id) count_persons
     FROM `bigquery-public-data.cms_synthetic_patient_data_omop.procedure_occurrence` 
@@ -35,8 +42,10 @@ def procedure_count_persons_for_n_last_date(n):
     for row in results:
         #print(row.count_persons)
         return jsonify(
-            {'data': row.count_persons,
-             'n': n
+            {
+                'data': row.count_persons,
+                'n': n,
+                'success': True
             }
         )
     
