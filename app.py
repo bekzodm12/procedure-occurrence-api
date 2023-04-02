@@ -44,4 +44,4 @@ def server_error(error):
     }), 500
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
